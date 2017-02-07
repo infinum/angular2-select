@@ -25,3 +25,5 @@ import {SelectionTemplate} from './selection-template';
     ]
 })
 export class SelectModule {}
+export {Option} from './option';
+export {SelectComponent} from './select.component';
