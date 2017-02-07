@@ -223,7 +223,7 @@ export class SelectComponent
         this.clearSelection();
     }
 
-    select(value: string) {
+    select(value: any) {
         this.optionList.getOptionsByValue(value).forEach((option) => {
             this.selectOption(option);
         });
@@ -262,11 +262,8 @@ export class SelectComponent
         if (typeof v === 'undefined' || v === null || v === '') {
             v = [];
         }
-        else if (typeof v === 'string') {
-            v = [v];
-        }
         else if (!Array.isArray(v)) {
-            throw new TypeError('Value must be a string or an array.');
+            v = [v];
         }
 
         if (!OptionList.equalValues(v, this._value)) {
