@@ -1,9 +1,9 @@
 {
-  "name": "angular2-select",
-  "version": "1.0.0-beta.2",
-  "description": "Select component for Angular2.",
+  "name": "@tiagoroldao/angular2-select",
+  "version": "1.0.0-beta.4",
+  "description": "Select component for Angular2. a fork of https://github.com/tiagoroldao/angular2-select",
   "main": "index.js",
-  "repository": "git@github.com:basvandenberg/angular2-select.git",
+  "repository": "git@github.com:tiagoroldao/angular2-select.git",
   "keywords": [
     "angular",
     "angular2",
@@ -12,12 +12,12 @@
     "selectize",
     "chosen"
   ],
-  "author": "Bastiaan van den Berg <b.a.vandenberg@gmail.com>",
+  "author": "Tiago Roldão",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/basvandenberg/angular2-select/issues"
+    "url": "https://github.com/tiagoroldao/angular2-select/issues"
   },
-  "homepage": "https://basvandenberg.github.io/angular2-select",
+  "homepage": "https://tiagoroldao.github.io/angular2-select",
   "dependencies": {},
   "devDependencies": {
     "@angular/common": "^2.4.1",
