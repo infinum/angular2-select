@@ -94,8 +94,11 @@ var packages = {
 | notFoundMsg        | `string`                               | `"No results found"`  | The message shown if no options are found for the current filter input value.              |
 | placeholder        | `string`                               | `""`                  | Placeholder text that is shown if no options are selected.                                 |
 | filterFunction     | `(string, Option) => boolean`          | `undefined`           | Filter function applied to each option. If defined replaces default functionality.         |
+| showToggle         | `boolean`        | `false`                | If set to true, toggle arrow shown in multiple mode.
 
 \* `Option` is an object with value and label (`{value: any, label: string}`)
+
+
 
 ## Output events
 
