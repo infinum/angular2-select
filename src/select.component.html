@@ -51,6 +51,15 @@
             [ngStyle]="{'width.px': filterInputWidth}"
             (input)="onMultipleFilterInput($event)"
             (keydown)="onMultipleFilterKeydown($event)"/>
+
+        <div class="toggle"
+            *ngIf="isOpen && showToggle">
+            &#x25B2;
+        </div>
+        <div class="toggle"
+            *ngIf="!isOpen && showToggle">
+            &#x25BC;
+        </div>
     </div>
 
 </div>
