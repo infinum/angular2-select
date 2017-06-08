@@ -84,6 +84,18 @@ ng-select {
             padding: 0 10px;
             width: 100%;
 
+            >div.placeholder {
+                flex: 1;
+                line-height: 30px;
+                overflow: hidden;
+                padding: 0 10px;
+                white-space: nowrap;
+            }
+
+            >div.placeholder {
+                color: #a9a9a9;
+            }
+
             >div.option {
                 background-color: #eee;
                 border: 1px solid #aaa;

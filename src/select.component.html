@@ -19,7 +19,7 @@
             *ngIf="!optionList.hasSelected()">
             <template [ngTemplateOutlet]="placeholderTemplate"></template>
             <span *ngIf="!placeholderTemplate">
-                {{placeholderView}}  
+                {{placeholderView}}
             </span>
         </div>
         <div class="clear"
@@ -39,6 +39,14 @@
 
     <div class="multiple"
         *ngIf="multiple">
+        <div class="placeholder"
+            *ngIf="!optionList.hasSelected()">
+            <template [ngTemplateOutlet]="placeholderTemplate"></template>
+            <span *ngIf="!placeholderTemplate">
+                {{placeholderView}}
+            </span>
+        </div>
+
         <div class="option"
             *ngFor="let option of optionList.selection">
             <template [ngOutletContext]="{option: option, onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
