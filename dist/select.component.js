@@ -11,13 +11,15 @@ exports.SELECT_VALUE_ACCESSOR = {
 };
 var SelectComponent = (function () {
     function SelectComponent() {
-        var _this = this;
         this.allowClear = false;
         this.disabled = false;
+        this.highlightColor = '#2196f3';
+        this.highlightTextColor = '#fff';
         this.multiple = false;
         this.noFilter = 0;
         this.notFoundMsg = 'No results found';
         this.placeholder = '';
+        this.showToggle = false;
         this.opened = new core_1.EventEmitter();
         this.closed = new core_1.EventEmitter();
         this.selected = new core_1.EventEmitter();
@@ -38,11 +40,6 @@ var SelectComponent = (function () {
         this.selectContainerClicked = false;
         this.onChange = function (_) { };
         this.onTouched = function () { };
-        // Multiple deselect option.
-        this.onDeselectOptionClick = function (option) {
-            _this.clearClicked = true;
-            _this.deselectOption(option);
-        };
         /** Keys. **/
         this.KEYS = {
             BACKSPACE: 8,
@@ -144,6 +141,11 @@ var SelectComponent = (function () {
         this.clearSelection();
         this.closeDropdown(true);
     };
+    // Multiple deselect option.
+    SelectComponent.prototype.onDeselectOptionClick = function (option) {
+        this.clearClicked = true;
+        this.deselectOption(option);
+    };
     /** API. **/
     // TODO fix issues with global click/key handler that closes the dropdown.
     SelectComponent.prototype.open = function () {
@@ -188,8 +190,11 @@ var SelectComponent = (function () {
             if (typeof v === 'undefined' || v === null || v === '') {
                 v = [];
             }
-            else if (!Array.isArray(v)) {
+            else if (typeof v === 'string') {
                 v = [v];
+            }
+            else if (!Array.isArray(v)) {
+                throw new TypeError('Value must be a string or an array.');
             }
             if (!option_list_1.OptionList.equalValues(v, this._value)) {
                 this.optionList.value = v;
@@ -430,6 +435,7 @@ var SelectComponent = (function () {
         'notFoundMsg': [{ type: core_1.Input },],
         'placeholder': [{ type: core_1.Input },],
         'filterFunction': [{ type: core_1.Input },],
+        'showToggle': [{ type: core_1.Input },],
         'opened': [{ type: core_1.Output },],
         'closed': [{ type: core_1.Output },],
         'selected': [{ type: core_1.Output },],
