@@ -42,13 +42,14 @@ export class SelectComponent
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
-    @Input() highlightColor: string;
-    @Input() highlightTextColor: string;
+    @Input() highlightColor: string = '#2196f3';
+    @Input() highlightTextColor: string = '#fff';
     @Input() multiple: boolean = false;
     @Input() noFilter: number = 0;
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
     @Input() filterFunction: (term: string, option: any) => boolean;
+    @Input() showToggle?: boolean = false;
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -206,7 +207,7 @@ export class SelectComponent
 
     // Multiple deselect option.
 
-    onDeselectOptionClick = (option: Option) => {
+    onDeselectOptionClick(option: Option) {
         this.clearClicked = true;
         this.deselectOption(option);
     }
@@ -265,8 +266,11 @@ export class SelectComponent
         if (typeof v === 'undefined' || v === null || v === '') {
             v = [];
         }
-        else if (!Array.isArray(v)) {
+        else if (typeof v === 'string') {
             v = [v];
+        }
+        else if (!Array.isArray(v)) {
+            throw new TypeError('Value must be a string or an array.');
         }
 
         if (!OptionList.equalValues(v, this._value)) {
