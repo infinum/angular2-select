@@ -42,14 +42,13 @@ export class SelectComponent
 
     @Input() allowClear: boolean = false;
     @Input() disabled: boolean = false;
-    @Input() highlightColor: string = '#2196f3';
-    @Input() highlightTextColor: string = '#fff';
+    @Input() highlightColor: string;
+    @Input() highlightTextColor: string;
     @Input() multiple: boolean = false;
     @Input() noFilter: number = 0;
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
     @Input() filterFunction: (term: string, option: any) => boolean;
-    @Input() showToggle?: boolean = false;
 
     @Output() opened: EventEmitter<null> = new EventEmitter<null>();
     @Output() closed: EventEmitter<null> = new EventEmitter<null>();
@@ -65,7 +64,6 @@ export class SelectComponent
     @ContentChild('selectOptionTemplate') selectOptionTemplate: TemplateRef<any>;
     @ContentChild('placeholderTemplate') placeholderTemplate: TemplateRef<any>;
     @ContentChild('notFoundTemplate') notFoundTemplate: TemplateRef<any>;
-    @ContentChild('alwaysOnTemplate') alwaysOnTemplate: TemplateRef<any>;
 
     private _value: Array<any> = [];
     optionList: OptionList;
@@ -92,6 +90,11 @@ export class SelectComponent
 
     private onChange = (_: any) => {};
     private onTouched = () => {};
+
+    private pressedKeysState: any = {
+        previousKey: null,
+        previousKeyPressCounter: 0
+    };
 
     /** Event handlers. **/
 
@@ -208,7 +211,7 @@ export class SelectComponent
 
     // Multiple deselect option.
 
-    onDeselectOptionClick(option: Option) {
+    onDeselectOptionClick = (option: Option) => {
         this.clearClicked = true;
         this.deselectOption(option);
     }
@@ -267,11 +270,8 @@ export class SelectComponent
         if (typeof v === 'undefined' || v === null || v === '') {
             v = [];
         }
-        else if (typeof v === 'string') {
-            v = [v];
-        }
         else if (!Array.isArray(v)) {
-            throw new TypeError('Value must be a string or an array.');
+            v = [v];
         }
 
         if (!OptionList.equalValues(v, this._value)) {
@@ -444,6 +444,13 @@ export class SelectComponent
     private handleSelectContainerKeydown(event: any) {
         let key = event.which;
 
+        if (this.pressedKeysState.previousKey === key) {
+            this.pressedKeysState.previousKeyPressCounter ++;
+        } else {
+            this.pressedKeysState.previousKey = key;
+            this.pressedKeysState.previousKeyPressCounter = 1;
+        }
+
         if (this.isOpen) {
             if (key === this.KEYS.ESC ||
                     (key === this.KEYS.UP && event.altKey)) {
@@ -467,6 +474,19 @@ export class SelectComponent
                 this.dropdown.moveHighlightedIntoView();
                 if (!this.filterEnabled) {
                     event.preventDefault();
+                }
+            } else {
+                const character = event.key;
+
+                const foundOptions: Array<Option> = this.optionList.options.filter((option: Option) => {
+                    const optionValueFirstChar: string = option.value.substr(0, 1).toLowerCase();
+                    return optionValueFirstChar === character.toLowerCase();
+                });
+
+                if (foundOptions.length > 0) {
+                    const foundOption: Option = foundOptions[(this.pressedKeysState.previousKeyPressCounter - 1) % foundOptions.length];
+                    this.optionList.highlightOption(foundOption);
+                    this.dropdown.moveHighlightedIntoView();
                 }
             }
         }
