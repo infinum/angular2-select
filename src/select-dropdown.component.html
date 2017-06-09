@@ -23,6 +23,11 @@
                 <span *ngIf="!selectOptionTemplate">{{option.label}}</span>
             </li>
             <li
+                *ngIf="alwaysOnTemplate"
+                class="message">
+                <template [ngTemplateOutlet]="alwaysOnTemplate"></template>
+            </li>
+            <li
                 *ngIf="!optionList.hasShown"
                 class="message">
                 <template [ngTemplateOutlet]="notFoundTemplate"></template>
