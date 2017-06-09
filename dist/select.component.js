@@ -465,6 +465,7 @@ var SelectComponent = (function () {
         'selectOptionTemplate': [{ type: core_1.ContentChild, args: ['selectOptionTemplate',] },],
         'placeholderTemplate': [{ type: core_1.ContentChild, args: ['placeholderTemplate',] },],
         'notFoundTemplate': [{ type: core_1.ContentChild, args: ['notFoundTemplate',] },],
+        'alwaysOnTemplate': [{ type: core_1.ContentChild, args: ['alwaysOnTemplate',] },],
     };
     return SelectComponent;
 }());

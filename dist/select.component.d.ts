@@ -27,6 +27,7 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     selectOptionTemplate: TemplateRef<any>;
     placeholderTemplate: TemplateRef<any>;
     notFoundTemplate: TemplateRef<any>;
+    alwaysOnTemplate: TemplateRef<any>;
     private _value;
     optionList: OptionList;
     hasSelected: boolean;
