@@ -91,6 +91,11 @@ export class SelectComponent
     private onChange = (_: any) => {};
     private onTouched = () => {};
 
+    private pressedKeysState: any = {
+        previousKey: null,
+        previousKeyPressCounter: 0
+    };
+
     /** Event handlers. **/
 
     // Angular lifecycle hooks.
@@ -439,6 +444,13 @@ export class SelectComponent
     private handleSelectContainerKeydown(event: any) {
         let key = event.which;
 
+        if (this.pressedKeysState.previousKey === key) {
+            this.pressedKeysState.previousKeyPressCounter ++;
+        } else {
+            this.pressedKeysState.previousKey = key;
+            this.pressedKeysState.previousKeyPressCounter = 1;
+        }
+
         if (this.isOpen) {
             if (key === this.KEYS.ESC ||
                     (key === this.KEYS.UP && event.altKey)) {
@@ -462,6 +474,19 @@ export class SelectComponent
                 this.dropdown.moveHighlightedIntoView();
                 if (!this.filterEnabled) {
                     event.preventDefault();
+                }
+            } else {
+                const character = event.key;
+
+                const foundOptions: Array<Option> = this.optionList.options.filter((option: Option) => {
+                    const optionValueFirstChar: string = option.value.substr(0, 1).toLowerCase();
+                    return optionValueFirstChar === character.toLowerCase();
+                });
+
+                if (foundOptions.length > 0) {
+                    const foundOption: Option = foundOptions[(this.pressedKeysState.previousKeyPressCounter - 1) % foundOptions.length];
+                    this.optionList.highlightOption(foundOption);
+                    this.dropdown.moveHighlightedIntoView();
                 }
             }
         }
