@@ -15,7 +15,6 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     notFoundMsg: string;
     placeholder: string;
     filterFunction: (term: string, option: any) => boolean;
-    showToggle?: boolean;
     opened: EventEmitter<null>;
     closed: EventEmitter<null>;
     selected: EventEmitter<any>;
@@ -28,7 +27,6 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     selectOptionTemplate: TemplateRef<any>;
     placeholderTemplate: TemplateRef<any>;
     notFoundTemplate: TemplateRef<any>;
-    alwaysOnTemplate: TemplateRef<any>;
     private _value;
     optionList: OptionList;
     hasSelected: boolean;
@@ -46,6 +44,7 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     left: number;
     private onChange;
     private onTouched;
+    private pressedKeysState;
     /** Event handlers. **/
     ngOnInit(): void;
     ngAfterViewInit(): void;
@@ -63,7 +62,7 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     onMultipleFilterInput(event: any): void;
     onMultipleFilterKeydown(event: any): void;
     onClearSelectionClick(event: any): void;
-    onDeselectOptionClick(option: Option): void;
+    onDeselectOptionClick: (option: Option) => void;
     /** API. **/
     open(): void;
     close(): void;
