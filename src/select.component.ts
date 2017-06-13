@@ -480,12 +480,12 @@ export class SelectComponent
                 const character = event.key;
 
                 const foundOptions: Array<Option> = this.optionList.options.filter((option: Option) => {
-                    if (!option || !option.value) {
+                    if (!option || !option.label) {
                         return false;
                     }
 
-                    const optionValueFirstChar: string = option.value.substr(0, 1).toLowerCase();
-                    return optionValueFirstChar === character.toLowerCase();
+                    const optionLabelFirstChar: string = option.label.substr(0, 1).toLowerCase();
+                    return optionLabelFirstChar === character.toLowerCase();
                 });
 
                 if (foundOptions.length > 0) {
