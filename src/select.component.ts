@@ -479,6 +479,10 @@ export class SelectComponent
                 const character = event.key;
 
                 const foundOptions: Array<Option> = this.optionList.options.filter((option: Option) => {
+                    if (!option || !option.value) {
+                        return false;
+                    }
+
                     const optionValueFirstChar: string = option.value.substr(0, 1).toLowerCase();
                     return optionValueFirstChar === character.toLowerCase();
                 });
