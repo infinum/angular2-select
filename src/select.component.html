@@ -40,7 +40,7 @@
     <div class="multiple"
         *ngIf="multiple">
         <div class="placeholder"
-            *ngIf="!optionList.hasSelected()">
+            *ngIf="!optionList.hasSelected() && !filterEnabled">
             <template [ngTemplateOutlet]="placeholderTemplate"></template>
             <span *ngIf="!placeholderTemplate">
                 {{placeholderView}}
