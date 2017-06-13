@@ -362,11 +362,11 @@ var SelectComponent = (function () {
             else {
                 var character_1 = event.key;
                 var foundOptions = this.optionList.options.filter(function (option) {
-                    if (!option || !option.value) {
+                    if (!option || !option.label) {
                         return false;
                     }
-                    var optionValueFirstChar = option.value.substr(0, 1).toLowerCase();
-                    return optionValueFirstChar === character_1.toLowerCase();
+                    var optionLabelFirstChar = option.label.substr(0, 1).toLowerCase();
+                    return optionLabelFirstChar === character_1.toLowerCase();
                 });
                 if (foundOptions.length > 0) {
                     var foundOption = foundOptions[(this.pressedKeysState.previousKeyPressCounter - 1) % foundOptions.length];
