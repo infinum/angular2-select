@@ -13,7 +13,7 @@ var OptionList = (function () {
             options = [];
         }
         this._options = options.map(function (option) {
-            var o = new option_1.Option(option.value, option.label);
+            var o = new option_1.Option(option.value, option.label, option.group);
             if (option.disabled) {
                 o.disable();
             }
