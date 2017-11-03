@@ -93,6 +93,23 @@ var SelectDropdownComponent = (function () {
             }
         }
     };
+    SelectDropdownComponent.prototype.shouldShowGroup = function (optionIndex) {
+        var option = this.optionList.filtered[optionIndex];
+        if (!this.groupTemplate || !option.group || !option.group.id || !option.group.label) {
+            return false;
+        }
+        if (optionIndex === 0) {
+            return true;
+        }
+        else if (optionIndex >= 1) {
+            var previousOption = this.optionList.filtered[optionIndex - 1];
+            if (!previousOption.group) {
+                return true;
+            }
+            return previousOption.group.id !== option.group.id;
+        }
+        return false;
+    };
     SelectDropdownComponent.prototype.handleOptionsWheel = function (e) {
         var div = this.optionsList.nativeElement;
         var atTop = div.scrollTop === 0;
@@ -116,6 +133,7 @@ var SelectDropdownComponent = (function () {
     SelectDropdownComponent.ctorParameters = function () { return []; };
     SelectDropdownComponent.propDecorators = {
         'filterEnabled': [{ type: core_1.Input },],
+        'forceFilterEnabled': [{ type: core_1.Input },],
         'highlightColor': [{ type: core_1.Input },],
         'highlightTextColor': [{ type: core_1.Input },],
         'left': [{ type: core_1.Input },],
@@ -125,6 +143,7 @@ var SelectDropdownComponent = (function () {
         'top': [{ type: core_1.Input },],
         'width': [{ type: core_1.Input },],
         'selectOptionTemplate': [{ type: core_1.Input },],
+        'groupTemplate': [{ type: core_1.Input },],
         'notFoundTemplate': [{ type: core_1.Input },],
         'alwaysOnTemplate': [{ type: core_1.Input },],
         'close': [{ type: core_1.Output },],
