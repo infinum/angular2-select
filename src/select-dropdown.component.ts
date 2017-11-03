@@ -170,7 +170,7 @@ export class SelectDropdownComponent
             return true;
         }
 
-        else if (optionIndex >= 1) {
+        if (optionIndex >= 1) {
             const previousOption = this.optionList.filtered[optionIndex - 1];
             if (!previousOption.group) {
                 return true;
