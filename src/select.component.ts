@@ -46,6 +46,7 @@ export class SelectComponent
     @Input() highlightTextColor: string;
     @Input() multiple: boolean = false;
     @Input() noFilter: number = 0;
+    @Input() forceFilterEnabled: boolean = false;
     @Input() notFoundMsg: string = 'No results found';
     @Input() placeholder: string = '';
     @Input() filterFunction: (term: string, option: any) => boolean;
@@ -62,6 +63,7 @@ export class SelectComponent
 
     @ContentChild('selectionTemplate') selectionTemplate: TemplateRef<any>;
     @ContentChild('selectOptionTemplate') selectOptionTemplate: TemplateRef<any>;
+    @ContentChild('groupTemplate') groupTemplate: TemplateRef<any>;
     @ContentChild('placeholderTemplate') placeholderTemplate: TemplateRef<any>;
     @ContentChild('notFoundTemplate') notFoundTemplate: TemplateRef<any>;
 
@@ -106,11 +108,9 @@ export class SelectComponent
     ngOnChanges(changes: any) {
         if (changes.hasOwnProperty('options')) {
             this.updateOptionsList(changes['options'].isFirstChange());
-        }
-        if (changes.hasOwnProperty('noFilter')) {
-            let numOptions: number = this.optionList.options.length;
-            let minNumOptions: number = changes['noFilter'].currentValue;
-            this.filterEnabled = numOptions >= minNumOptions;
+            this.updateFilterAvailability();
+        } else if (changes.hasOwnProperty('noFilter')) {
+            this.updateFilterAvailability();
         }
         if (changes.hasOwnProperty('filterFunction')) {
             this.optionList.test = changes['filterFunction'].currentValue;
@@ -422,6 +422,12 @@ export class SelectComponent
         if (this.filterEnabled) {
             this.filterInput.nativeElement.value = value;
         }
+    }
+
+    private updateFilterAvailability() {
+        let numOptions: number = this.optionList.options.length;
+        let minNumOptions: number = this.noFilter;
+        this.filterEnabled = numOptions >= minNumOptions;
     }
 
     /** Keys. **/
