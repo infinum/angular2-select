@@ -5,7 +5,8 @@ export declare class Option {
     highlighted: boolean;
     selected: boolean;
     shown: boolean;
-    constructor(value: any, label: string);
+    group: any;
+    constructor(value: any, label: string, group?: any);
     show(): void;
     hide(): void;
     disable(): void;

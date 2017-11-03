@@ -16,6 +16,7 @@ var SelectComponent = (function () {
         this.disabled = false;
         this.multiple = false;
         this.noFilter = 0;
+        this.forceFilterEnabled = false;
         this.notFoundMsg = 'No results found';
         this.placeholder = '';
         this.opened = new core_1.EventEmitter();
@@ -69,11 +70,10 @@ var SelectComponent = (function () {
     SelectComponent.prototype.ngOnChanges = function (changes) {
         if (changes.hasOwnProperty('options')) {
             this.updateOptionsList(changes['options'].isFirstChange());
+            this.updateFilterAvailability();
         }
-        if (changes.hasOwnProperty('noFilter')) {
-            var numOptions = this.optionList.options.length;
-            var minNumOptions = changes['noFilter'].currentValue;
-            this.filterEnabled = numOptions >= minNumOptions;
+        else if (changes.hasOwnProperty('noFilter')) {
+            this.updateFilterAvailability();
         }
         if (changes.hasOwnProperty('filterFunction')) {
             this.optionList.test = changes['filterFunction'].currentValue;
@@ -324,6 +324,11 @@ var SelectComponent = (function () {
             this.filterInput.nativeElement.value = value;
         }
     };
+    SelectComponent.prototype.updateFilterAvailability = function () {
+        var numOptions = this.optionList.options.length;
+        var minNumOptions = this.noFilter;
+        this.filterEnabled = numOptions >= minNumOptions;
+    };
     SelectComponent.prototype.handleSelectContainerKeydown = function (event) {
         var _this = this;
         var key = event.which;
@@ -453,6 +458,7 @@ var SelectComponent = (function () {
         'highlightTextColor': [{ type: core_1.Input },],
         'multiple': [{ type: core_1.Input },],
         'noFilter': [{ type: core_1.Input },],
+        'forceFilterEnabled': [{ type: core_1.Input },],
         'notFoundMsg': [{ type: core_1.Input },],
         'placeholder': [{ type: core_1.Input },],
         'filterFunction': [{ type: core_1.Input },],
@@ -466,6 +472,7 @@ var SelectComponent = (function () {
         'filterInput': [{ type: core_1.ViewChild, args: ['filterInput',] },],
         'selectionTemplate': [{ type: core_1.ContentChild, args: ['selectionTemplate',] },],
         'selectOptionTemplate': [{ type: core_1.ContentChild, args: ['selectOptionTemplate',] },],
+        'groupTemplate': [{ type: core_1.ContentChild, args: ['groupTemplate',] },],
         'placeholderTemplate': [{ type: core_1.ContentChild, args: ['placeholderTemplate',] },],
         'notFoundTemplate': [{ type: core_1.ContentChild, args: ['notFoundTemplate',] },],
         'alwaysOnTemplate': [{ type: core_1.ContentChild, args: ['alwaysOnTemplate',] },],

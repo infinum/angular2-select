@@ -12,6 +12,7 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     highlightTextColor: string;
     multiple: boolean;
     noFilter: number;
+    forceFilterEnabled: boolean;
     notFoundMsg: string;
     placeholder: string;
     filterFunction: (term: string, option: any) => boolean;
@@ -25,6 +26,7 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     filterInput: any;
     selectionTemplate: TemplateRef<any>;
     selectOptionTemplate: TemplateRef<any>;
+    groupTemplate: TemplateRef<any>;
     placeholderTemplate: TemplateRef<any>;
     notFoundTemplate: TemplateRef<any>;
     alwaysOnTemplate: TemplateRef<any>;
@@ -93,6 +95,7 @@ export declare class SelectComponent implements AfterViewInit, ControlValueAcces
     /** Filter. **/
     private clearFilterInput();
     private setMultipleFilterInput(value);
+    private updateFilterAvailability();
     /** Keys. **/
     private KEYS;
     private handleSelectContainerKeydown(event);

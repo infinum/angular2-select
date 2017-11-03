@@ -3,6 +3,7 @@ import { Option } from './option';
 import { OptionList } from './option-list';
 export declare class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit {
     filterEnabled: boolean;
+    forceFilterEnabled: boolean;
     highlightColor: string;
     highlightTextColor: string;
     left: number;
@@ -12,6 +13,7 @@ export declare class SelectDropdownComponent implements AfterViewInit, OnChanges
     top: number;
     width: number;
     selectOptionTemplate: TemplateRef<any>;
+    groupTemplate: TemplateRef<any>;
     notFoundTemplate: TemplateRef<any>;
     alwaysOnTemplate: TemplateRef<any>;
     close: EventEmitter<boolean>;
@@ -39,5 +41,6 @@ export declare class SelectDropdownComponent implements AfterViewInit, OnChanges
     getOptionStyle(option: Option): any;
     clearFilterInput(): void;
     moveHighlightedIntoView(): void;
+    shouldShowGroup(optionIndex: number): boolean;
     private handleOptionsWheel(e);
 }

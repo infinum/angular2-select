@@ -1,8 +1,9 @@
 "use strict";
 var Option = (function () {
-    function Option(value, label) {
+    function Option(value, label, group) {
         this.value = value;
         this.label = label;
+        this.group = group;
         this.disabled = false;
         this.highlighted = false;
         this.selected = false;
