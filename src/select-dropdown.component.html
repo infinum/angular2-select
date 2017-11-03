@@ -2,7 +2,7 @@
     [ngStyle]="{'top.px': top, 'left.px': left, 'width.px': width}">
 
     <div class="filter"
-        *ngIf="!multiple && filterEnabled">
+        *ngIf="(!multiple && filterEnabled) || (forceFilterEnabled && filterEnabled)">
         <input
             #filterInput
             (click)="onSingleFilterClick($event)"
@@ -14,13 +14,16 @@
         #optionsList>
         <ul
             (wheel)="onOptionsWheel($event)">
-            <li *ngFor="let option of optionList.filtered"
-                [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled, 'templated': !!optionTemplate}"
-                [ngStyle]="getOptionStyle(option)"
-                (click)="onOptionClick(option)"
-                (mouseover)="onOptionMouseover(option)">
-                <template [ngOutletContext]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></template>
-                <span *ngIf="!selectOptionTemplate">{{option.label}}</span>
+            <li *ngFor="let option of optionList.filtered; let i = index">
+                <template *ngIf="shouldShowGroup(i)" [ngOutletContext]="{option: option}" [ngTemplateOutlet]="groupTemplate"></template>
+
+                <div (click)="onOptionClick(option)"
+                    [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled, 'templated': !!optionTemplate}"
+                    [ngStyle]="getOptionStyle(option)"
+                    (mouseover)="onOptionMouseover(option)">
+                    <template [ngOutletContext]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></template>
+                    <span *ngIf="!selectOptionTemplate">{{option.label}}</span>
+                </div>
             </li>
             <li
                 *ngIf="!optionList.hasShown"
