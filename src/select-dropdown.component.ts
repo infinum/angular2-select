@@ -172,6 +172,9 @@ export class SelectDropdownComponent
 
         else if (optionIndex >= 1) {
             const previousOption = this.optionList.filtered[optionIndex - 1];
+            if (!previousOption.group) {
+                return true;
+            }
             return previousOption.group.id !== option.group.id;
         }
 

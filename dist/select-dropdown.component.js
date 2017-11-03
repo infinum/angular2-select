@@ -103,6 +103,9 @@ var SelectDropdownComponent = (function () {
         }
         else if (optionIndex >= 1) {
             var previousOption = this.optionList.filtered[optionIndex - 1];
+            if (!previousOption.group) {
+                return true;
+            }
             return previousOption.group.id !== option.group.id;
         }
         return false;
