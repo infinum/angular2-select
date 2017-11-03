@@ -23,10 +23,10 @@ import {OptionList} from './option-list';
     encapsulation: ViewEncapsulation.None
 })
 
-export class SelectDropdownComponent
-        implements AfterViewInit, OnChanges, OnInit {
+export class SelectDropdownComponent implements AfterViewInit, OnChanges, OnInit {
 
     @Input() filterEnabled: boolean;
+    @Input() forceFilterEnabled: boolean;
     @Input() highlightColor: string;
     @Input() highlightTextColor: string;
     @Input() left: number;
@@ -36,6 +36,7 @@ export class SelectDropdownComponent
     @Input() top: number;
     @Input() width: number;
     @Input() selectOptionTemplate: TemplateRef<any>;
+    @Input() groupTemplate: TemplateRef<any>;
     @Input() notFoundTemplate: TemplateRef<any>;
     @Input() alwaysOnTemplate: TemplateRef<any>;
 
@@ -156,6 +157,27 @@ export class SelectDropdownComponent
                 list.scrollTop = itemTop;
             }
         }
+    }
+
+    shouldShowGroup(optionIndex: number) {
+        const option: Option = this.optionList.filtered[optionIndex];
+        if (!this.groupTemplate || !option.group || !option.group.id || !option.group.label) {
+            return false;
+        }
+
+        if (optionIndex === 0) {
+            return true;
+        }
+
+        if (optionIndex >= 1) {
+            const previousOption = this.optionList.filtered[optionIndex - 1];
+            if (!previousOption.group) {
+                return true;
+            }
+            return previousOption.group.id !== option.group.id;
+        }
+
+        return false;
     }
 
     private handleOptionsWheel(e: any) {
