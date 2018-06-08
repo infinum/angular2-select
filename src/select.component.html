@@ -12,7 +12,7 @@
         *ngIf="!multiple">
         <div class="value"
             *ngIf="optionList.hasSelected()">
-            <template [ngOutletContext]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
+            <template [ngTemplateOutlet]="{option: optionList.selection[0], onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
             <span *ngIf="!selectionTemplate">{{optionList.selection[0].label}}</span>
         </div>
         <div class="placeholder"
@@ -49,13 +49,13 @@
 
         <div class="option"
             *ngFor="let option of optionList.selection">
-            <template [ngOutletContext]="{option: option, onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
+            <template [ngTemplateOutlet]="{option: option, onDeselectOptionClick: onDeselectOptionClick}" [ngTemplateOutlet]="selectionTemplate"></template>
             <span *ngIf="!selectionTemplate">
                 <span class="deselect-option"
                     (click)=onDeselectOptionClick(option)>
                     &#x2715;
                 </span>
-                {{option.label}}    
+                {{option.label}}
             </span>
         </div>
         <input
