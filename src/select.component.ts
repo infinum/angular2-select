@@ -9,7 +9,6 @@ import {
     ExistingProvider,
     ViewChild,
     ContentChild,
-    ViewEncapsulation,
     TemplateRef,
     Optional,
     forwardRef
@@ -31,8 +30,7 @@ export const SELECT_VALUE_ACCESSOR: ExistingProvider = {
     selector: 'ng-select',
     template: TEMPLATE,
     styles: [STYLE],
-    providers: [SELECT_VALUE_ACCESSOR],
-    encapsulation: ViewEncapsulation.None
+    providers: [SELECT_VALUE_ACCESSOR]
 })
 
 export class SelectComponent
