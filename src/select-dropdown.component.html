@@ -15,13 +15,13 @@
         <ul
             (wheel)="onOptionsWheel($event)">
             <li *ngFor="let option of optionList.filtered; let i = index">
-                <template *ngIf="shouldShowGroup(i)" [ngOutletContext]="{option: option}" [ngTemplateOutlet]="groupTemplate"></template>
+                <template *ngIf="shouldShowGroup(i)" [ngTemplateOutlet]="{option: option}" [ngTemplateOutlet]="groupTemplate"></template>
 
                 <div (click)="onOptionClick(option)"
                     [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled, 'templated': !!optionTemplate}"
                     [ngStyle]="getOptionStyle(option)"
                     (mouseover)="onOptionMouseover(option)">
-                    <template [ngOutletContext]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></template>
+                    <template [ngTemplateOutlet]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></template>
                     <span *ngIf="!selectOptionTemplate">{{option.label}}</span>
                 </div>
             </li>
