@@ -124,7 +124,7 @@ The following blocks can be replaced with templates inside the `ng-select` compo
 
 ```html
 <ng-select>
-    <template #templateName let-contextVariable="templateVariable">{{templateVariable}}</template>
+    <ng-template #templateName let-contextVariable="templateVariable">{{templateVariable}}</ng-template>
 </ng-select>
 ```
 
