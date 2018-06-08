@@ -1,6 +1,7 @@
 "use strict";
-var option_1 = require('./option');
-var diacritics_1 = require('./diacritics');
+Object.defineProperty(exports, "__esModule", { value: true });
+var option_1 = require("./option");
+var diacritics_1 = require("./diacritics");
 var OptionList = (function () {
     function OptionList(options) {
         /* Consider using these for performance improvement. */

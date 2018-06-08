@@ -1,7 +1,8 @@
 "use strict";
-var core_1 = require('@angular/core');
-var select_dropdown_component_css_1 = require('./select-dropdown.component.css');
-var select_dropdown_component_html_1 = require('./select-dropdown.component.html');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var select_dropdown_component_css_1 = require("./select-dropdown.component.css");
+var select_dropdown_component_html_1 = require("./select-dropdown.component.html");
 var SelectDropdownComponent = (function () {
     function SelectDropdownComponent() {
         this.close = new core_1.EventEmitter();
@@ -121,39 +122,39 @@ var SelectDropdownComponent = (function () {
             e.preventDefault();
         }
     };
-    SelectDropdownComponent.decorators = [
-        { type: core_1.Component, args: [{
-                    selector: 'select-dropdown',
-                    template: select_dropdown_component_html_1.TEMPLATE,
-                    styles: [select_dropdown_component_css_1.STYLE],
-                    encapsulation: core_1.ViewEncapsulation.None
-                },] },
-    ];
-    /** @nocollapse */
-    SelectDropdownComponent.ctorParameters = function () { return []; };
-    SelectDropdownComponent.propDecorators = {
-        'filterEnabled': [{ type: core_1.Input },],
-        'forceFilterEnabled': [{ type: core_1.Input },],
-        'highlightColor': [{ type: core_1.Input },],
-        'highlightTextColor': [{ type: core_1.Input },],
-        'left': [{ type: core_1.Input },],
-        'multiple': [{ type: core_1.Input },],
-        'notFoundMsg': [{ type: core_1.Input },],
-        'optionList': [{ type: core_1.Input },],
-        'top': [{ type: core_1.Input },],
-        'width': [{ type: core_1.Input },],
-        'selectOptionTemplate': [{ type: core_1.Input },],
-        'groupTemplate': [{ type: core_1.Input },],
-        'notFoundTemplate': [{ type: core_1.Input },],
-        'alwaysOnTemplate': [{ type: core_1.Input },],
-        'close': [{ type: core_1.Output },],
-        'optionClicked': [{ type: core_1.Output },],
-        'singleFilterClick': [{ type: core_1.Output },],
-        'singleFilterInput': [{ type: core_1.Output },],
-        'singleFilterKeydown': [{ type: core_1.Output },],
-        'filterInput': [{ type: core_1.ViewChild, args: ['filterInput',] },],
-        'optionsList': [{ type: core_1.ViewChild, args: ['optionsList',] },],
-    };
     return SelectDropdownComponent;
 }());
+SelectDropdownComponent.decorators = [
+    { type: core_1.Component, args: [{
+                selector: 'select-dropdown',
+                template: select_dropdown_component_html_1.TEMPLATE,
+                styles: [select_dropdown_component_css_1.STYLE],
+                encapsulation: core_1.ViewEncapsulation.None
+            },] },
+];
+/** @nocollapse */
+SelectDropdownComponent.ctorParameters = function () { return []; };
+SelectDropdownComponent.propDecorators = {
+    'filterEnabled': [{ type: core_1.Input },],
+    'forceFilterEnabled': [{ type: core_1.Input },],
+    'highlightColor': [{ type: core_1.Input },],
+    'highlightTextColor': [{ type: core_1.Input },],
+    'left': [{ type: core_1.Input },],
+    'multiple': [{ type: core_1.Input },],
+    'notFoundMsg': [{ type: core_1.Input },],
+    'optionList': [{ type: core_1.Input },],
+    'top': [{ type: core_1.Input },],
+    'width': [{ type: core_1.Input },],
+    'selectOptionTemplate': [{ type: core_1.Input },],
+    'groupTemplate': [{ type: core_1.Input },],
+    'notFoundTemplate': [{ type: core_1.Input },],
+    'alwaysOnTemplate': [{ type: core_1.Input },],
+    'close': [{ type: core_1.Output },],
+    'optionClicked': [{ type: core_1.Output },],
+    'singleFilterClick': [{ type: core_1.Output },],
+    'singleFilterInput': [{ type: core_1.Output },],
+    'singleFilterKeydown': [{ type: core_1.Output },],
+    'filterInput': [{ type: core_1.ViewChild, args: ['filterInput',] },],
+    'optionsList': [{ type: core_1.ViewChild, args: ['optionsList',] },],
+};
 exports.SelectDropdownComponent = SelectDropdownComponent;
