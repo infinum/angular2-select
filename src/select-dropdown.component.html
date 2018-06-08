@@ -28,7 +28,7 @@
             <li
                 *ngIf="alwaysOnTemplate"
                 class="message">
-                <template [ngTemplateOutlet]="alwaysOnTemplate"></template>
+                <ng-template [ngTemplateOutlet]="alwaysOnTemplate"></ng-template>
             </li>
             <li
                 *ngIf="!optionList.hasShown"
