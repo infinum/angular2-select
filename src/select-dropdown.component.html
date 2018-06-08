@@ -15,20 +15,20 @@
         <ul
             (wheel)="onOptionsWheel($event)">
             <li *ngFor="let option of optionList.filtered; let i = index">
-                <ng-template *ngIf="shouldShowGroup(i)" [ngTemplateOutlet]="{option: option}" [ngTemplateOutlet]="groupTemplate"></ng-template>
+                <ng-template *ngIf="shouldShowGroup(i) && groupTemplate" [ngTemplateOutlet]="{option: option}" [ngTemplateOutlet]="groupTemplate"></ng-template>
 
                 <div (click)="onOptionClick(option)"
                     [ngClass]="{'highlighted': option.highlighted, 'selected': option.selected, 'disabled': option.disabled, 'templated': !!optionTemplate}"
                     [ngStyle]="getOptionStyle(option)"
                     (mouseover)="onOptionMouseover(option)">
-                    <ng-template [ngTemplateOutlet]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></ng-template>
+                    <ng-template *ngIf="selectOptionTemplate" [ngTemplateOutlet]="{option: option}" [ngTemplateOutlet]="selectOptionTemplate"></ng-template>
                     <span *ngIf="!selectOptionTemplate">{{option.label}}</span>
                 </div>
             </li>
             <li
                 *ngIf="!optionList.hasShown"
                 class="message">
-                <ng-template [ngTemplateOutlet]="notFoundTemplate"></ng-template>
+                <ng-template *ngIf="notFoundTemplate" [ngTemplateOutlet]="notFoundTemplate"></ng-template>
                 <span *ngIf="!notFoundTemplate">{{notFoundMsg}}</span>
             </li>
         </ul>
