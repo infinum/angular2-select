@@ -453,7 +453,8 @@ SelectComponent.decorators = [
                 selector: 'ng-select',
                 template: select_component_html_1.TEMPLATE,
                 styles: [select_component_css_1.STYLE],
-                providers: [exports.SELECT_VALUE_ACCESSOR]
+                providers: [exports.SELECT_VALUE_ACCESSOR],
+                encapsulation: core_1.ViewEncapsulation.None
             },] },
 ];
 /** @nocollapse */
