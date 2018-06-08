@@ -21,8 +21,7 @@
     "url": "https://github.com/tiagoroldao/angular2-select/issues"
   },
   "homepage": "https://tiagoroldao.github.io/angular2-select",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@angular/common": "^4.4.7",
     "@angular/compiler": "^4.4.7",
